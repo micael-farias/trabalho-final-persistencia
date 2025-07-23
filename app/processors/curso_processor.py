@@ -34,7 +34,6 @@ class CursoProcessor:
                     'error': f'Colunas obrigatórias ausentes: {missing_cols}'
                 }
             
-            print("🔍 Filtrando registros válidos...")
             valid_indices = []
             for idx, row in df.iterrows():
                 if self.validators.validate_curso_tecnico_data(row):
@@ -57,7 +56,6 @@ class CursoProcessor:
             }
     
     def _process_curso_batches(self, valid_df, start_time):
-        """Processa cursos em lotes"""
         BATCH_SIZE = 500
         total_batches = (len(valid_df) + BATCH_SIZE - 1) // BATCH_SIZE
         
@@ -76,11 +74,9 @@ class CursoProcessor:
             
             print(f"🔄 Lote {batch_num + 1}/{total_batches}: registros {start_idx+1}-{end_idx} ({len(batch_df)} registros)")
             
-            # Processar lote
             batch_results = self._process_single_curso_batch(batch_df)
             
             try:
-                # Usar os novos repositórios específicos
                 batch_cursos = self.curso_repo.bulk_insert_cursos_tecnicos(batch_results['cursos'])
                 batch_escola_cursos = self.escola_curso_repo.bulk_insert_escola_cursos(batch_results['escola_cursos'])
                 
@@ -91,16 +87,7 @@ class CursoProcessor:
                 total_errors += batch_results['errors']
                 
                 batch_time = time.time() - batch_start_time
-                print(f"   ✅ Concluído em {batch_time:.1f}s: {batch_cursos} cursos únicos, {batch_escola_cursos} relações escola-curso")
-                
-                # ETA - Cálculo do tempo estimado restante
-                if batch_num > 0:
-                    avg_time_per_batch = (time.time() - start_time) / (batch_num + 1)
-                    remaining_batches = total_batches - (batch_num + 1)
-                    eta_seconds = remaining_batches * avg_time_per_batch
-                    eta_minutes = int(eta_seconds / 60)
-                    print(f"   ⏱️  ETA: ~{eta_minutes}min {int(eta_seconds % 60)}s restantes")
-            
+                print(f"   ✅ Concluído em {batch_time:.1f}s: {batch_cursos} cursos únicos, {batch_escola_cursos} relações escola-curso")        
             except Exception as e:
                 self.db.rollback()
                 print(f"   ❌ Erro no lote: {e}")
@@ -109,11 +96,9 @@ class CursoProcessor:
             
             print()
         
-        # Estatísticas finais
         return self._generate_curso_final_stats(valid_df, total_cursos, total_escola_cursos, total_errors, total_batches, start_time)
     
     def _process_single_curso_batch(self, batch_df):
-        """Processa um único lote de cursos"""
         cursos_batch = []
         escola_cursos_batch = []
         batch_errors = 0
@@ -124,7 +109,6 @@ class CursoProcessor:
                 co_curso = self.utils.safe_int(row['CO_CURSO_EDUC_PROFISSIONAL'])
                 co_entidade = self.utils.safe_int(row['CO_ENTIDADE'])
                 
-                # Dados do curso técnico (apenas uma vez por curso)
                 if co_curso not in cursos_vistos:
                     curso_data = {
                         'co_curso_educ_profissional': co_curso,
@@ -140,7 +124,6 @@ class CursoProcessor:
                     cursos_batch.append(curso_data)
                     cursos_vistos.add(co_curso)
                 
-                # Dados da relação escola-curso
                 escola_curso_data = {
                     'co_entidade': co_entidade,
                     'co_curso_educ_profissional': co_curso,
@@ -169,17 +152,6 @@ class CursoProcessor:
         total_time = time.time() - start_time
         minutes = int(total_time / 60)
         seconds = int(total_time % 60)
-        
-        print("=" * 50)
-        print("📊 IMPORTAÇÃO DE CURSOS TÉCNICOS CONCLUÍDA!")
-        print("=" * 50)
-        print(f"⏱️  Tempo total: {minutes}min {seconds}s")
-        print(f"📈 Registros processados: {len(valid_df):,}")
-        print(f"🎓 Cursos técnicos únicos: {total_cursos:,}")
-        print(f"🏫 Relações escola-curso: {total_escola_cursos:,}")
-        print(f"⚠️  Erros: {total_errors:,}")
-        print(f"📊 Taxa de sucesso: {((total_escola_cursos)/(len(valid_df))*100):.1f}%")
-        print(f"🚀 Velocidade: {len(valid_df)/total_time:.0f} registros/segundo")
         
         return {
             'success': True,

@@ -37,7 +37,6 @@ class EscolaProcessor:
                     'error': f'Colunas obrigatórias ausentes: {missing_cols}'
                 }
             
-            print("🔍 Filtrando registros válidos...")
             valid_indices = []
             for idx, row in df.iterrows():
                 if self.validators.validate_escola_data(row):
@@ -57,7 +56,6 @@ class EscolaProcessor:
             }
     
     def _process_escola_batches(self, valid_df, start_time):
-        """Processa escolas em lotes"""
         BATCH_SIZE = 1000
         total_batches = (len(valid_df) + BATCH_SIZE - 1) // BATCH_SIZE
         
@@ -77,11 +75,9 @@ class EscolaProcessor:
             
             print(f"🔄 Lote {batch_num + 1}/{total_batches}: registros {start_idx+1}-{end_idx} ({len(batch_df)} registros)")
             
-            # Processar lote
             batch_results = self._process_single_batch(batch_df)
             
             try:
-                # Usar os novos repositórios específicos
                 batch_escolas = self.escola_repo.bulk_insert_escolas(batch_results['escolas'])
                 batch_infra = self.infra_repo.bulk_insert_infraestruturas(batch_results['infraestruturas'])
                 batch_ofertas = self.oferta_repo.bulk_insert_ofertas_modalidade(batch_results['ofertas'])
@@ -95,15 +91,6 @@ class EscolaProcessor:
                 
                 batch_time = time.time() - batch_start_time
                 print(f"   ✅ Concluído em {batch_time:.1f}s: {batch_escolas} escolas, {batch_infra} infraestruturas, {batch_ofertas} ofertas")
-                
-                # ETA - Cálculo do tempo estimado restante
-                if batch_num > 0:
-                    avg_time_per_batch = (time.time() - start_time) / (batch_num + 1)
-                    remaining_batches = total_batches - (batch_num + 1)
-                    eta_seconds = remaining_batches * avg_time_per_batch
-                    eta_minutes = int(eta_seconds / 60)
-                    print(f"   ⏱️  ETA: ~{eta_minutes}min {int(eta_seconds % 60)}s restantes")
-            
             except Exception as e:
                 self.db.rollback()
                 print(f"   ❌ Erro no lote: {e}")
@@ -112,11 +99,9 @@ class EscolaProcessor:
             
             print()
         
-        # Estatísticas finais
         return self._generate_final_stats(valid_df, total_escolas, total_infra, total_ofertas, total_errors, total_batches, start_time)
     
     def _process_single_batch(self, batch_df):
-        """Processa um único lote"""
         escolas_batch = []
         infraestruturas_batch = []
         ofertas_batch = []
@@ -198,18 +183,6 @@ class EscolaProcessor:
         total_time = time.time() - start_time
         minutes = int(total_time / 60)
         seconds = int(total_time % 60)
-        
-        print("=" * 60)
-        print("📊 IMPORTAÇÃO CONCLUÍDA!")
-        print("=" * 60)
-        print(f"⏱️  Tempo total: {minutes}min {seconds}s")
-        print(f"📈 Registros processados: {len(valid_df):,}")
-        print(f"🏫 Escolas importadas: {total_escolas:,}")
-        print(f"🏗️  Infraestruturas importadas: {total_infra:,}")
-        print(f"📚 Ofertas de modalidade importadas: {total_ofertas:,}")
-        print(f"⚠️  Erros: {total_errors:,}")
-        print(f"📊 Taxa de sucesso: {((total_escolas)/(len(valid_df))*100):.1f}%")
-        print(f"🚀 Velocidade: {len(valid_df)/total_time:.0f} registros/segundo")
         
         return {
             'success': True,
