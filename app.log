@@ -146,3 +146,28 @@ Traceback (most recent call last):
   File "/home/mario/Desktop/trabalho-final-persistencia/app/routers/relatorio_router.py", line 57, in relatorio_por_uf
     raise HTTPException(status_code=404, detail=resultado['error'])
 fastapi.exceptions.HTTPException
+25/07/2025 11:08:17 - INFO - EndPoint GET /escolas/uf/{uf} chamado (uf=CE)
+25/07/2025 11:08:17 - INFO - Retornando 10149 escolas para UF=CE
+25/07/2025 11:10:54 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=uf, data=CE, page=1, limit=10)
+25/07/2025 11:10:54 - WARNING - Filtro 'uf' inválido
+25/07/2025 11:10:54 - ERROR - Erro ao filtrar escolas: 400: Filtro 'uf' inválido
+25/07/2025 11:11:17 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=sg_uf, data=CE, page=1, limit=10)
+25/07/2025 11:11:17 - INFO - Retornando 10 escolas filtradas por sg_uf=CE (page=1, limit=10)
+25/07/2025 11:16:49 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=sg_uf, data=CE, page=1, limit=10)
+25/07/2025 11:16:49 - INFO - Retornando 10 escolas filtradas por sg_uf=CE (page=1, limit=10)
+25/07/2025 11:17:04 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=no_municipio, data=Quixadá, page=1, limit=10)
+25/07/2025 11:17:04 - INFO - Retornando 10 escolas filtradas por no_municipio=Quixadá (page=1, limit=10)
+25/07/2025 11:17:19 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=no_municipio, data=Tabuleiro do Norte, page=1, limit=10)
+25/07/2025 11:17:19 - INFO - Retornando 10 escolas filtradas por no_municipio=Tabuleiro do Norte (page=1, limit=10)
+25/07/2025 11:41:20 - INFO - EndPoint GET /escolas chamado
+25/07/2025 11:41:20 - INFO - Retornando 100 escolas (skip=2, limit=100)
+25/07/2025 12:25:53 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=sg_uf, data=CE, page=0, limit=10)
+25/07/2025 12:25:53 - ERROR - Erro ao filtrar escolas: (psycopg2.errors.InvalidRowCountInResultOffsetClause) OFFSET must not be negative
+
+[SQL: SELECT escolas.co_entidade AS escolas_co_entidade, escolas.no_entidade AS escolas_no_entidade, escolas.sg_uf AS escolas_sg_uf, escolas.no_municipio AS escolas_no_municipio, escolas.tp_dependencia AS escolas_tp_dependencia, escolas.tp_localizacao AS escolas_tp_localizacao, escolas.tp_situacao_funcionamento AS escolas_tp_situacao_funcionamento, escolas.qt_mat_bas AS escolas_qt_mat_bas, escolas.qt_doc_bas AS escolas_qt_doc_bas, escolas.nu_ano_censo AS escolas_nu_ano_censo 
+FROM escolas 
+WHERE escolas.sg_uf = %(sg_uf_1)s 
+ LIMIT %(param_1)s OFFSET %(param_2)s]
+[parameters: {'sg_uf_1': 'CE', 'param_1': 10, 'param_2': -10}]
+(Background on this error at: https://sqlalche.me/e/20/9h9h)
+25/07/2025 12:45:15 - ERROR - Erro ao filtrar escolas: type object 'Escola' has no attribute ''
