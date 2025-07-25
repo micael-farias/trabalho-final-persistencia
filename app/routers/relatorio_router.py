@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 from typing import Dict, Any
 from ..core.database import get_db
 from ..repositories.relatorio_repository import RelatorioRepository
-from ..logs import logger
+from ..logs import logging
 
 router = APIRouter(prefix="/relatorios", tags=["Relatórios"])
 
@@ -19,17 +19,17 @@ async def relatorio_geral(db: Session = Depends(get_db)) -> Dict[str, Any]:
     - Percentuais de infraestrutura
     - Distribuição por dependência administrativa
     """
-    logger.info("Solicitada geração de relatório geral do censo escolar")
+    logging.info("Solicitada geração de relatório geral do censo escolar")
     try:
         repo = RelatorioRepository(db)
         resultado = repo.relatorio_geral()
         if 'error' in resultado:
-            logger.error(f"Erro ao gerar relatório geral: {resultado['error']}")
+            logging.error(f"Erro ao gerar relatório geral: {resultado['error']}")
             raise HTTPException(status_code=500, detail=resultado['error'])
-        logger.info("Relatório geral gerado com sucesso")
+        logging.info("Relatório geral gerado com sucesso")
         return resultado
     except Exception as e:
-        logger.exception(f"Exceção ao gerar relatório geral: {str(e)}")
+        logging.exception(f"Exceção ao gerar relatório geral: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Erro ao gerar relatório geral: {str(e)}")
 
 @router.get("/uf/{uf}")
@@ -46,17 +46,17 @@ async def relatorio_por_uf(uf: str, db: Session = Depends(get_db)) -> Dict[str, 
     - Infraestrutura disponível
     - Modalidades de ensino oferecidas
     """
-    logger.info(f"Solicitada geração de relatório por UF: {uf}")
+    logging.info(f"Solicitada geração de relatório por UF: {uf}")
     try:
         repo = RelatorioRepository(db)
         resultado = repo.relatorio_por_uf(uf)
         if 'error' in resultado:
-            logger.error(f"Erro ao gerar relatório por UF {uf}: {resultado['error']}")
+            logging.error(f"Erro ao gerar relatório por UF {uf}: {resultado['error']}")
             raise HTTPException(status_code=404, detail=resultado['error'])
-        logger.info(f"Relatório por UF {uf} gerado com sucesso")
+        logging.info(f"Relatório por UF {uf} gerado com sucesso")
         return resultado
     except Exception as e:
-        logger.exception(f"Exceção ao gerar relatório por UF {uf}: {str(e)}")
+        logging.exception(f"Exceção ao gerar relatório por UF {uf}: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Erro ao gerar relatório por UF: {str(e)}")
 
 @router.get("/cursos-tecnicos")
@@ -70,17 +70,17 @@ async def relatorio_cursos_tecnicos(db: Session = Depends(get_db)) -> Dict[str, 
     - Distribuição por UF
     - Estatísticas de matrículas
     """
-    logger.info("Solicitada geração de relatório de cursos técnicos")
+    logging.info("Solicitada geração de relatório de cursos técnicos")
     try:
         repo = RelatorioRepository(db)
         resultado = repo.relatorio_cursos_tecnicos()
         if 'error' in resultado:
-            logger.error(f"Erro ao gerar relatório de cursos técnicos: {resultado['error']}")
+            logging.error(f"Erro ao gerar relatório de cursos técnicos: {resultado['error']}")
             raise HTTPException(status_code=500, detail=resultado['error'])
-        logger.info("Relatório de cursos técnicos gerado com sucesso")
+        logging.info("Relatório de cursos técnicos gerado com sucesso")
         return resultado
     except Exception as e:
-        logger.exception(f"Exceção ao gerar relatório de cursos técnicos: {str(e)}")
+        logging.exception(f"Exceção ao gerar relatório de cursos técnicos: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Erro ao gerar relatório de cursos técnicos: {str(e)}")
 
 @router.get("/infraestrutura")
@@ -94,17 +94,17 @@ async def relatorio_infraestrutura(db: Session = Depends(get_db)) -> Dict[str, A
     - Comparativo por UF
     - Indicadores de acessibilidade
     """
-    logger.info("Solicitada geração de relatório de infraestrutura escolar")
+    logging.info("Solicitada geração de relatório de infraestrutura escolar")
     try:
         repo = RelatorioRepository(db)
         resultado = repo.relatorio_infraestrutura()
         if 'error' in resultado:
-            logger.error(f"Erro ao gerar relatório de infraestrutura: {resultado['error']}")
+            logging.error(f"Erro ao gerar relatório de infraestrutura: {resultado['error']}")
             raise HTTPException(status_code=500, detail=resultado['error'])
-        logger.info("Relatório de infraestrutura gerado com sucesso")
+        logging.info("Relatório de infraestrutura gerado com sucesso")
         return resultado
     except Exception as e:
-        logger.exception(f"Exceção ao gerar relatório de infraestrutura: {str(e)}")
+        logging.exception(f"Exceção ao gerar relatório de infraestrutura: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Erro ao gerar relatório de infraestrutura: {str(e)}")
 
 @router.get("/dashboard")
