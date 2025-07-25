@@ -4,6 +4,7 @@ from typing import Dict, Any
 from ..core.database import get_db
 from ..repositories.relatorio_repository import RelatorioRepository
 from ..logs import logging
+from ..models import escola , infraestrutura
 
 router = APIRouter(prefix="/relatorios", tags=["Relatórios"])
 
@@ -178,3 +179,119 @@ async def estatisticas_rapidas(db: Session = Depends(get_db)) -> Dict[str, Any]:
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao obter estatísticas: {str(e)}")
+    
+    
+@router.get("/infraestrutura_das_escolas_por_municipio/")
+def infraestrutura_das_escolas_filtro_por_municio(
+    cidade: str, 
+    paran : str ,  
+    value,
+    session: Session = Depends(get_db)
+):
+    """
+    Relatório da infraestrutura das escolas por município.
+
+    Parâmetros aceitos para 'paran':
+    - in_internet -> BOOL
+    - in_biblioteca -> BOOL
+    - in_laboratorio_informatica -> BOOL
+    - in_laboratorio_ciencias -> BOOL
+    - in_quadra_esportes -> BOOL
+    - in_acessibilidade_rampas -> BOOL
+    - qt_desktop_aluno -> inteiro
+    - qt_salas_utilizadas -> inteiro
+    """
+    logging.info("Relatório da infraestrutura das escolas")
+    
+    try:
+        if not hasattr(infraestrutura.Infraestrutura, paran):
+            raise HTTPException(status_code=400, detail=f"Coluna '{paran}' não existe em Infraestrutura")
+
+        filtro_col = getattr(infraestrutura.Infraestrutura, paran)
+        # Total geral sem paginação
+        total_registros_geral = session.query(escola.Escola.no_entidade)
+        total_registros_geral = total_registros_geral.join(
+            infraestrutura.Infraestrutura,
+            escola.Escola.co_entidade == infraestrutura.Infraestrutura.co_entidade
+        ).filter(escola.Escola.no_municipio == cidade)
+        total_registros_geral = total_registros_geral.filter(filtro_col == value).count()
+
+        result = (
+            session.query(escola.Escola.no_entidade, infraestrutura.Infraestrutura)
+            .join(infraestrutura.Infraestrutura, escola.Escola.co_entidade == infraestrutura.Infraestrutura.co_entidade)
+            .filter(escola.Escola.no_municipio == cidade)
+            .filter(filtro_col == value)
+            .all()
+        )
+        def serialize_infra(row):
+            no_entidade = row[0]
+            infra = row[1]
+            return {
+                "no_entidade": no_entidade,
+                **{k: v for k, v in infra.__dict__.items() if not k.startswith('_')}
+            }
+        registros = [serialize_infra(r) for r in result]
+        return {
+            "total_registros": len(registros),
+            "total_registros_geral": total_registros_geral,
+            "dados": registros
+        }
+    except Exception as e:
+        logging.error(f"Erro: {e} ")
+        raise HTTPException(status_code=500, detail=str(e))
+    
+    
+    
+@router.get("/infraestrutura_das_escolas_por_estado/")
+def infraestrutura_das_escolas_filtro_por_estado(
+    uf: str,
+    paran: str,
+    value,
+    session: Session = Depends(get_db)
+):
+    """
+    Relatório da infraestrutura das escolas por estado, agrupando por município.
+
+    Parâmetros aceitos para 'paran':
+    - in_internet -> BOOL
+    - in_biblioteca -> BOOL
+    - in_laboratorio_informatica -> BOOL
+    - in_laboratorio_ciencias -> BOOL
+    - in_quadra_esportes -> BOOL
+    - in_acessibilidade_rampas -> BOOL
+    - qt_desktop_aluno -> inteiro
+    - qt_salas_utilizadas -> inteiro
+    """
+    logging.info("Relatório da infraestrutura das escolas por estado")
+    
+    try:
+        if not hasattr(infraestrutura.Infraestrutura, paran):
+            raise HTTPException(status_code=400, detail=f"Coluna '{paran}' não existe em Infraestrutura")
+
+        filtro_col = getattr(infraestrutura.Infraestrutura, paran)
+        result = (
+            session.query(escola.Escola.no_municipio, escola.Escola.no_entidade, infraestrutura.Infraestrutura)
+            .join(infraestrutura.Infraestrutura, escola.Escola.co_entidade == infraestrutura.Infraestrutura.co_entidade)
+            .filter(escola.Escola.sg_uf == uf)
+            .filter(filtro_col == value)
+            .all()
+        )
+        # Agrupa por município, mostrando apenas o nome da cidade
+        municipios = {}
+        for row in result:
+            municipio = row[0]
+            if municipio not in municipios:
+                municipios[municipio] = 0
+            municipios[municipio] += 1
+        return {
+            "total_municipios": len(municipios),
+            "municipios": [
+                {
+                    "municipio": m,
+                    "total_registros": total
+                } for m, total in municipios.items()
+            ]
+        }
+    except Exception as e:
+        logging.error(f"Erro: {e} ")
+        raise HTTPException(status_code=500, detail=str(e))
