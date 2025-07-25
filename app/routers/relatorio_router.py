@@ -186,6 +186,8 @@ def infraestrutura_das_escolas_filtro_por_municio(
     cidade: str, 
     paran : str ,  
     value,
+    page: int = 1,
+    limit: int = 10,
     session: Session = Depends(get_db)
 ):
     """
@@ -216,11 +218,14 @@ def infraestrutura_das_escolas_filtro_por_municio(
         ).filter(escola.Escola.no_municipio == cidade)
         total_registros_geral = total_registros_geral.filter(filtro_col == value).count()
 
+        offset = (page - 1) * limit
         result = (
             session.query(escola.Escola.no_entidade, infraestrutura.Infraestrutura)
             .join(infraestrutura.Infraestrutura, escola.Escola.co_entidade == infraestrutura.Infraestrutura.co_entidade)
             .filter(escola.Escola.no_municipio == cidade)
             .filter(filtro_col == value)
+            .offset(offset)
+            .limit(limit)
             .all()
         )
         def serialize_infra(row):
@@ -231,8 +236,10 @@ def infraestrutura_das_escolas_filtro_por_municio(
                 **{k: v for k, v in infra.__dict__.items() if not k.startswith('_')}
             }
         registros = [serialize_infra(r) for r in result]
+        total_paginas = (total_registros_geral + limit - 1) // limit if limit > 0 else 1
         return {
-            "total_registros": len(registros),
+            "pagina_atual": page,
+            "total_paginas": total_paginas,
             "total_registros_geral": total_registros_geral,
             "dados": registros
         }
@@ -247,6 +254,8 @@ def infraestrutura_das_escolas_filtro_por_estado(
     uf: str,
     paran: str,
     value,
+    page: int = 1,
+    limit: int = 10,
     session: Session = Depends(get_db)
 ):
     """
@@ -269,28 +278,41 @@ def infraestrutura_das_escolas_filtro_por_estado(
             raise HTTPException(status_code=400, detail=f"Coluna '{paran}' não existe em Infraestrutura")
 
         filtro_col = getattr(infraestrutura.Infraestrutura, paran)
-        result = (
-            session.query(escola.Escola.no_municipio, escola.Escola.no_entidade, infraestrutura.Infraestrutura)
-            .join(infraestrutura.Infraestrutura, escola.Escola.co_entidade == infraestrutura.Infraestrutura.co_entidade)
-            .filter(escola.Escola.sg_uf == uf)
-            .filter(filtro_col == value)
-            .all()
-        )
-        # Agrupa por município, mostrando apenas o nome da cidade
-        municipios = {}
-        for row in result:
-            municipio = row[0]
-            if municipio not in municipios:
-                municipios[municipio] = 0
-            municipios[municipio] += 1
+        # Buscar todos os municípios distintos que atendem ao filtro
+        municipios_query = session.query(escola.Escola.no_municipio)
+        municipios_query = municipios_query.join(
+            infraestrutura.Infraestrutura,
+            escola.Escola.co_entidade == infraestrutura.Infraestrutura.co_entidade
+        ).filter(escola.Escola.sg_uf == uf)
+        municipios_query = municipios_query.filter(filtro_col == value).distinct()
+        municipios_lista = [m[0] for m in municipios_query.all()]
+
+        total_registros_geral = len(municipios_lista)
+        total_paginas = (total_registros_geral + limit - 1) // limit if limit > 0 else 1
+        offset = (page - 1) * limit
+        municipios_paginados = municipios_lista[offset:offset+limit]
+
+        # Para cada município paginado, contar os registros
+        municipios = []
+        for municipio in municipios_paginados:
+            count = session.query(escola.Escola.no_entidade)
+            count = count.join(
+                infraestrutura.Infraestrutura,
+                escola.Escola.co_entidade == infraestrutura.Infraestrutura.co_entidade
+            ).filter(escola.Escola.sg_uf == uf)
+            count = count.filter(filtro_col == value)
+            count = count.filter(escola.Escola.no_municipio == municipio).count()
+            municipios.append({
+                "municipio": municipio,
+                "total_registros": count
+            })
+
         return {
-            "total_municipios": len(municipios),
-            "municipios": [
-                {
-                    "municipio": m,
-                    "total_registros": total
-                } for m, total in municipios.items()
-            ]
+            "pagina_atual": page,
+            "total_paginas": total_paginas,
+            "total_registros_geral": total_registros_geral,
+            "total_municipios": len(municipios_lista),
+            "municipios": municipios
         }
     except Exception as e:
         logging.error(f"Erro: {e} ")
