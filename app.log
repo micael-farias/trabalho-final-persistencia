@@ -90,108 +90,59 @@ FROM escolas
 25/07/2025 09:34:00 - INFO - Retornando 1 escolas filtradas por sg_uf=CE (page=1, limit=1)
 25/07/2025 09:34:06 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=sg_uf, data=CE, page=1, limit=215545)
 25/07/2025 09:34:06 - INFO - Retornando 10149 escolas filtradas por sg_uf=CE (page=1, limit=215545)
-25/07/2025 09:45:22 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=no_municipio, data=Santa Quitéria, page=1, limit=5)
-25/07/2025 09:45:22 - INFO - Retornando 5 escolas filtradas por no_municipio=Santa Quitéria (page=1, limit=5)
-25/07/2025 09:46:33 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=no_municipio, data=Santa Quitéria, page=1, limit=5)
-25/07/2025 09:46:33 - INFO - Retornando 5 escolas filtradas por no_municipio=Santa Quitéria (page=1, limit=5)
-25/07/2025 09:46:41 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=no_municipio, data=Santa Quitéria, page=1, limit=50)
-25/07/2025 09:46:41 - INFO - Retornando 50 escolas filtradas por no_municipio=Santa Quitéria (page=1, limit=50)
+25/07/2025 09:45:22 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=no_municipio, data=Santa QuitÃ©ria, page=1, limit=5)
+25/07/2025 09:45:22 - INFO - Retornando 5 escolas filtradas por no_municipio=Santa QuitÃ©ria (page=1, limit=5)
+25/07/2025 09:46:33 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=no_municipio, data=Santa QuitÃ©ria, page=1, limit=5)
+25/07/2025 09:46:33 - INFO - Retornando 5 escolas filtradas por no_municipio=Santa QuitÃ©ria (page=1, limit=5)
+25/07/2025 09:46:41 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=no_municipio, data=Santa QuitÃ©ria, page=1, limit=50)
+25/07/2025 09:46:41 - INFO - Retornando 50 escolas filtradas por no_municipio=Santa QuitÃ©ria (page=1, limit=50)
 25/07/2025 10:24:12 - INFO - EndPoint GET /escolas chamado
 25/07/2025 10:24:12 - ERROR - Erro ao processar escolas: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: FATAL:  database "censo_escolar" does not exist
 
 (Background on this error at: https://sqlalche.me/e/20/e3q8)
 25/07/2025 10:30:12 - INFO - EndPoint GET /escolas chamado
 25/07/2025 10:30:12 - INFO - Retornando 100 escolas (skip=0, limit=100)
-25/07/2025 10:32:21 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=no_entidade, data=Santa Quitéria, page=1, limit=5)
-25/07/2025 10:32:21 - INFO - Retornando 0 escolas filtradas por no_entidade=Santa Quitéria (page=1, limit=5)
-25/07/2025 10:32:36 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=no_municipio, data=Santa Quitéria, page=1, limit=5)
-25/07/2025 10:32:36 - INFO - Retornando 5 escolas filtradas por no_municipio=Santa Quitéria (page=1, limit=5)
-25/07/2025 10:50:58 - INFO - Solicitada geração de relatório geral do censo escolar
-25/07/2025 10:50:59 - INFO - Relatório geral gerado com sucesso
-25/07/2025 10:51:16 - INFO - Solicitada geração de relatório por UF: ce
-25/07/2025 10:51:16 - ERROR - Erro ao gerar relatório por UF ce: 'TextClause' object has no attribute '_isnull'
-25/07/2025 10:51:16 - ERROR - Exceção ao gerar relatório por UF ce: 
+25/07/2025 10:32:21 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=no_entidade, data=Santa QuitÃ©ria, page=1, limit=5)
+25/07/2025 10:32:21 - INFO - Retornando 0 escolas filtradas por no_entidade=Santa QuitÃ©ria (page=1, limit=5)
+25/07/2025 10:32:36 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=no_municipio, data=Santa QuitÃ©ria, page=1, limit=5)
+25/07/2025 10:32:36 - INFO - Retornando 5 escolas filtradas por no_municipio=Santa QuitÃ©ria (page=1, limit=5)
+25/07/2025 10:50:58 - INFO - Solicitada geraÃ§Ã£o de relatÃ³rio geral do censo escolar
+25/07/2025 10:50:59 - INFO - RelatÃ³rio geral gerado com sucesso
+25/07/2025 10:51:16 - INFO - Solicitada geraÃ§Ã£o de relatÃ³rio por UF: ce
+25/07/2025 10:51:16 - ERROR - Erro ao gerar relatÃ³rio por UF ce: 'TextClause' object has no attribute '_isnull'
+25/07/2025 10:51:16 - ERROR - ExceÃ§Ã£o ao gerar relatÃ³rio por UF ce: 
 Traceback (most recent call last):
   File "/home/mario/Desktop/trabalho-final-persistencia/app/routers/relatorio_router.py", line 55, in relatorio_por_uf
     raise HTTPException(status_code=404, detail=resultado['error'])
 fastapi.exceptions.HTTPException
-25/07/2025 10:51:23 - INFO - Solicitada geração de relatório por UF: CE
-25/07/2025 10:51:23 - ERROR - Erro ao gerar relatório por UF CE: 'TextClause' object has no attribute '_isnull'
-25/07/2025 10:51:23 - ERROR - Exceção ao gerar relatório por UF CE: 
+25/07/2025 10:51:23 - INFO - Solicitada geraÃ§Ã£o de relatÃ³rio por UF: CE
+25/07/2025 10:51:23 - ERROR - Erro ao gerar relatÃ³rio por UF CE: 'TextClause' object has no attribute '_isnull'
+25/07/2025 10:51:23 - ERROR - ExceÃ§Ã£o ao gerar relatÃ³rio por UF CE: 
 Traceback (most recent call last):
   File "/home/mario/Desktop/trabalho-final-persistencia/app/routers/relatorio_router.py", line 55, in relatorio_por_uf
     raise HTTPException(status_code=404, detail=resultado['error'])
 fastapi.exceptions.HTTPException
-25/07/2025 10:52:55 - INFO - Solicitada geração de relatório por UF: CE
+25/07/2025 10:52:55 - INFO - Solicitada geraÃ§Ã£o de relatÃ³rio por UF: CE
 25/07/2025 10:52:55 - ERROR - {'error': "'TextClause' object has no attribute '_isnull'"}
-25/07/2025 10:52:55 - ERROR - Erro ao gerar relatório por UF CE: 'TextClause' object has no attribute '_isnull'
-25/07/2025 10:52:55 - ERROR - Exceção ao gerar relatório por UF CE: 
+25/07/2025 10:52:55 - ERROR - Erro ao gerar relatÃ³rio por UF CE: 'TextClause' object has no attribute '_isnull'
+25/07/2025 10:52:55 - ERROR - ExceÃ§Ã£o ao gerar relatÃ³rio por UF CE: 
 Traceback (most recent call last):
   File "/home/mario/Desktop/trabalho-final-persistencia/app/routers/relatorio_router.py", line 56, in relatorio_por_uf
     raise HTTPException(status_code=404, detail=resultado['error'])
 fastapi.exceptions.HTTPException
-25/07/2025 10:55:47 - INFO - Solicitada geração de relatório por UF: ce
+25/07/2025 10:55:47 - INFO - Solicitada geraÃ§Ã£o de relatÃ³rio por UF: ce
 25/07/2025 10:55:47 - ERROR - {'error': "'TextClause' object has no attribute '_isnull'"}
-25/07/2025 10:55:47 - ERROR - Erro ao gerar relatório por UF ce: 'TextClause' object has no attribute '_isnull'
-25/07/2025 10:55:47 - ERROR - Exceção ao gerar relatório por UF ce: 
+25/07/2025 10:55:47 - ERROR - Erro ao gerar relatÃ³rio por UF ce: 'TextClause' object has no attribute '_isnull'
+25/07/2025 10:55:47 - ERROR - ExceÃ§Ã£o ao gerar relatÃ³rio por UF ce: 
 Traceback (most recent call last):
   File "/home/mario/Desktop/trabalho-final-persistencia/app/routers/relatorio_router.py", line 57, in relatorio_por_uf
     raise HTTPException(status_code=404, detail=resultado['error'])
 fastapi.exceptions.HTTPException
-25/07/2025 10:55:52 - INFO - Solicitada geração de relatório por UF: CE
+25/07/2025 10:55:52 - INFO - Solicitada geraÃ§Ã£o de relatÃ³rio por UF: CE
 25/07/2025 10:55:52 - ERROR - {'error': "'TextClause' object has no attribute '_isnull'"}
-25/07/2025 10:55:52 - ERROR - Erro ao gerar relatório por UF CE: 'TextClause' object has no attribute '_isnull'
-25/07/2025 10:55:52 - ERROR - Exceção ao gerar relatório por UF CE: 
+25/07/2025 10:55:52 - ERROR - Erro ao gerar relatÃ³rio por UF CE: 'TextClause' object has no attribute '_isnull'
+25/07/2025 10:55:52 - ERROR - ExceÃ§Ã£o ao gerar relatÃ³rio por UF CE: 
 Traceback (most recent call last):
   File "/home/mario/Desktop/trabalho-final-persistencia/app/routers/relatorio_router.py", line 57, in relatorio_por_uf
     raise HTTPException(status_code=404, detail=resultado['error'])
 fastapi.exceptions.HTTPException
-25/07/2025 12:11:59 - INFO - EndPoint GET /escolas chamado
-25/07/2025 12:11:59 - ERROR - Erro ao processar escolas: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5432 failed: FATAL:  database "censo_escolar" does not exist
-
-(Background on this error at: https://sqlalche.me/e/20/e3q8)
-25/07/2025 12:17:25 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=no_municipio, data=Santa Quitéria, page=1, limit=20)
-25/07/2025 12:17:25 - INFO - Retornando 20 escolas filtradas por no_municipio=Santa Quitéria (page=1, limit=20)
-25/07/2025 12:24:35 - INFO - Relaório da infraesturua das escolas
-25/07/2025 12:26:10 - INFO - Relaório da infraesturua das escolas
-25/07/2025 12:27:03 - INFO - Relaório da infraesturua das escolas
-25/07/2025 12:28:01 - INFO - Relaório da infraesturua das escolas
-25/07/2025 12:29:28 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 12:29:40 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:09:11 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=sg_uf, data=CE, page=1, limit=20)
-25/07/2025 13:09:12 - INFO - Retornando 20 escolas filtradas por sg_uf=CE (page=1, limit=20)
-25/07/2025 13:09:38 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:12:55 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:13:39 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:14:24 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:15:30 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:16:37 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:16:50 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:17:49 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:17:55 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:24:08 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:24:17 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:24:22 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:24:34 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:24:49 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:26:30 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:36:31 - INFO - Relatório da infraestrutura das escolas por estado
-25/07/2025 13:43:17 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:45:00 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:45:53 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:46:23 - INFO - Relatório da infraestrutura das escolas por estado
-25/07/2025 13:46:30 - INFO - Relatório da infraestrutura das escolas por estado
-25/07/2025 13:50:32 - INFO - Relatório da infraestrutura das escolas por estado
-25/07/2025 13:51:08 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:51:31 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:54:09 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:54:19 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:55:09 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:55:17 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:55:28 - INFO - Relatório da infraestrutura das escolas
-25/07/2025 13:55:55 - INFO - Relatório da infraestrutura das escolas por estado
-25/07/2025 13:56:27 - INFO - Relatório da infraestrutura das escolas por estado
-25/07/2025 13:57:25 - INFO - Relatório da infraestrutura das escolas por estado
-25/07/2025 13:57:57 - INFO - Relatório da infraestrutura das escolas por estado
-25/07/2025 13:59:14 - INFO - Relatório da infraestrutura das escolas por estado
-25/07/2025 14:00:34 - INFO - Relatório da infraestrutura das escolas por estado
