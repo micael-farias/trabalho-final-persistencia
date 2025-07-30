@@ -1,67 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import GraficoPorcentagem from "./GraficoPorcentagem";
 
 function RelatorioCidade() {
   const parametros = {
-    in_internet: 'boolean',
-    in_biblioteca: 'boolean',
-    in_laboratorio_informatica: 'boolean',
-    in_laboratorio_ciencias: 'boolean',
-    in_quadra_esportes: 'boolean',
-    in_acessibilidade_rampas: 'boolean',
-    qt_desktop_aluno: 'int',
-    qt_salas_utilizadas: 'int',
+    in_internet: "boolean",
+    in_biblioteca: "boolean",
+    in_laboratorio_informatica: "boolean",
+    in_laboratorio_ciencias: "boolean",
+    in_quadra_esportes: "boolean",
+    in_acessibilidade_rampas: "boolean",
+    qt_desktop_aluno: "int",
+    qt_salas_utilizadas: "int",
   };
 
   const mapColunas = {
-    in_internet: 'Possui Internet',
-    in_biblioteca: 'Possui Biblioteca',
-    in_laboratorio_informatica: 'Possui Lab. de Informática',
-    in_laboratorio_ciencias: 'Possui Lab. de Ciências',
-    in_quadra_esportes: 'Possui Quadra de Esportes',
-    in_acessibilidade_rampas: 'Possui Acessibilidade (Rampas)',
-    qt_desktop_aluno: 'Qtd. Desktops por Aluno',
-    qt_salas_utilizadas: 'Qtd. Salas Utilizadas',
+    in_internet: "Possui Internet",
+    in_biblioteca: "Possui Biblioteca",
+    in_laboratorio_informatica: "Possui Lab. de Informática",
+    in_laboratorio_ciencias: "Possui Lab. de Ciências",
+    in_quadra_esportes: "Possui Quadra de Esportes",
+    in_acessibilidade_rampas: "Possui Acessibilidade (Rampas)",
+    qt_desktop_aluno: "Qtd. Desktops por Aluno",
+    qt_salas_utilizadas: "Qtd. Salas Utilizadas",
   };
 
-  const [cidade, setCidade] = useState('');
-  const [paran, setParan] = useState('');
-  const [value, setValue] = useState('');
+  const [cidade, setCidade] = useState("");
+  const [paran, setParan] = useState("");
+  const [value, setValue] = useState("");
   const [dados, setDados] = useState([]);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPaginas, setTotalPaginas] = useState(1);
+  const [porcentagem, setPorcentagem] = useState(null);
 
   const fetchDados = (pagina = 1) => {
-    if (!cidade || !paran || value === '') {
-      setError('Preencha todos os campos');
+    if (!cidade || !paran || value === "") {
+      setError("Preencha todos os campos");
       return;
     }
 
     setError(null);
     let valorFinal = value;
-    if (parametros[paran] === 'boolean') {
-      valorFinal = value === 'true';
+    if (parametros[paran] === "boolean") {
+      valorFinal = value === "true";
     }
 
-    const url = new URL('http://localhost:8000/relatorios/infraestrutura_das_escolas_por_municipio/');
-    url.searchParams.append('cidade', cidade);
-    url.searchParams.append('paran', paran);
-    url.searchParams.append('value', valorFinal);
-    url.searchParams.append('page', pagina);
+    const url = new URL(
+      "http://localhost:8000/relatorios/infraestrutura_das_escolas_por_municipio/"
+    );
+    url.searchParams.append("cidade", cidade);
+    url.searchParams.append("paran", paran);
+    url.searchParams.append("value", valorFinal);
+    url.searchParams.append("page", pagina);
 
     fetch(url)
       .then((res) => {
-        if (!res.ok) throw new Error('Erro ao buscar dados');
+        if (!res.ok) throw new Error("Erro ao buscar dados");
         return res.json();
       })
       .then((data) => {
         setDados(data.dados || []);
         setPage(data.pagina_atual || 1);
         setTotalPaginas(data.total_paginas || 1);
+        setPorcentagem(data.porcentagem ?? null);
       })
       .catch((err) => {
         console.error(err);
-        setError('Erro ao buscar dados');
+        setError("Erro ao buscar dados");
       });
   };
 
@@ -71,15 +76,19 @@ function RelatorioCidade() {
   };
 
   const renderInput = () => {
-    if (parametros[paran] === 'boolean') {
+    if (parametros[paran] === "boolean") {
       return (
-        <select className="form-control" value={value} onChange={(e) => setValue(e.target.value)}>
+        <select
+          className="form-control"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        >
           <option value="">Selecione</option>
           <option value="true">Sim</option>
           <option value="false">Não</option>
         </select>
       );
-    } else if (parametros[paran] === 'int') {
+    } else if (parametros[paran] === "int") {
       return (
         <input
           type="number"
@@ -117,7 +126,7 @@ function RelatorioCidade() {
               value={paran}
               onChange={(e) => {
                 setParan(e.target.value);
-                setValue('');
+                setValue("");
               }}
             >
               <option value="">Selecione</option>
@@ -146,6 +155,12 @@ function RelatorioCidade() {
 
       {dados.length > 0 && (
         <>
+          {/* Exibe o gráfico de pizza apenas na primeira página e se houver porcentagem */}
+          {page === 1 && porcentagem !== null && (
+            <div className="d-flex justify-content-center mb-4">
+              <GraficoPorcentagem porcentagem={porcentagem} />
+            </div>
+          )}
           <div className="table-responsive">
             <table className="table table-bordered table-striped">
               <thead className="thead-dark">
@@ -162,10 +177,10 @@ function RelatorioCidade() {
                     <td>{escola.no_entidade}</td>
                     {Object.keys(mapColunas).map((col) => (
                       <td key={col}>
-                        {typeof escola[col] === 'boolean'
+                        {typeof escola[col] === "boolean"
                           ? escola[col]
-                            ? '✅'
-                            : '❌'
+                            ? "✅"
+                            : "❌"
                           : escola[col]}
                       </td>
                     ))}
