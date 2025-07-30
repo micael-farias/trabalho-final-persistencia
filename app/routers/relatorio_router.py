@@ -242,7 +242,11 @@ def infraestrutura_das_escolas_filtro_por_municio(
         registros = [serialize_infra(r) for r in result]
         total_paginas = (total_registros_geral + limit - 1) // limit if limit > 0 else 1
 
-        porcentagem = round(total_registros_geral/total_escolas,2)
+
+        if total_escolas > 0:
+            porcentagem = round(total_registros_geral/total_escolas,2)
+        else:
+            porcentagem = 0.0
 
         return {
             "pagina_atual": page,
@@ -290,7 +294,22 @@ def infraestrutura_das_escolas_filtro_por_estado(
         municipios_todos_query = session.query(escola.Escola.no_municipio).filter(escola.Escola.sg_uf == uf).distinct().order_by(escola.Escola.no_municipio.asc())
         municipios_lista = [m[0] for m in municipios_todos_query.all()]
 
+        #Quantidade de munucipios do estado
         total_registros_geral = len(municipios_lista)
+
+        #Quantidade de escolas no estado
+        quantidade_escolas_total = session.query(escola.Escola).filter(escola.Escola.sg_uf == uf).count()
+
+        #Quantide de escolas filtradas
+
+        quantidade_escolas_filtradas = session.query(escola.Escola, infraestrutura.Infraestrutura).filter(escola.Escola.sg_uf == uf).filter(escola.Escola.co_entidade == infraestrutura.Infraestrutura.co_entidade).filter(filtro_col == value).count()
+
+
+        if quantidade_escolas_total > 0:
+            porcentagem = round(quantidade_escolas_filtradas/quantidade_escolas_total,2)
+        else:
+            porcentagem = 0.0
+
         total_paginas = (total_registros_geral + limit - 1) // limit if limit > 0 else 1
         offset = (page - 1) * limit
         municipios_paginados = municipios_lista[offset:offset+limit]
@@ -312,8 +331,8 @@ def infraestrutura_das_escolas_filtro_por_estado(
         return {
             "pagina_atual": page,
             "total_paginas": total_paginas,
-            "total_registros_geral": total_registros_geral,
             "total_municipios": len(municipios_lista),
+            "porcentagem" : porcentagem,
             "municipios": municipios
         }
     except Exception as e:
