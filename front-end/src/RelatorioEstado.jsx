@@ -1,91 +1,98 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import GraficoPorcentagem from "./GraficoPorcentagem";
 
 function RelatorioEstado() {
   const parametros = {
-    in_internet: 'boolean',
-    in_biblioteca: 'boolean',
-    in_laboratorio_informatica: 'boolean',
-    in_laboratorio_ciencias: 'boolean',
-    in_quadra_esportes: 'boolean',
-    in_acessibilidade_rampas: 'boolean',
-    qt_desktop_aluno: 'int',
-    qt_salas_utilizadas: 'int',
+    in_internet: "boolean",
+    in_biblioteca: "boolean",
+    in_laboratorio_informatica: "boolean",
+    in_laboratorio_ciencias: "boolean",
+    in_quadra_esportes: "boolean",
+    in_acessibilidade_rampas: "boolean",
+    qt_desktop_aluno: "int",
+    qt_salas_utilizadas: "int",
   };
 
   const mapColunas = {
-    municipio: 'Município',
-    total_registros: 'Total de Escolas',
+    municipio: "Município",
+    total_registros: "Total de Escolas",
   };
 
   const estados = [
-    { sigla: 'AC', nome: 'Acre' },
-    { sigla: 'AL', nome: 'Alagoas' },
-    { sigla: 'AP', nome: 'Amapá' },
-    { sigla: 'AM', nome: 'Amazonas' },
-    { sigla: 'BA', nome: 'Bahia' },
-    { sigla: 'CE', nome: 'Ceará' },
-    { sigla: 'DF', nome: 'Distrito Federal' },
-    { sigla: 'ES', nome: 'Espírito Santo' },
-    { sigla: 'GO', nome: 'Goiás' },
-    { sigla: 'MA', nome: 'Maranhão' },
-    { sigla: 'MT', nome: 'Mato Grosso' },
-    { sigla: 'MS', nome: 'Mato Grosso do Sul' },
-    { sigla: 'MG', nome: 'Minas Gerais' },
-    { sigla: 'PA', nome: 'Pará' },
-    { sigla: 'PB', nome: 'Paraíba' },
-    { sigla: 'PR', nome: 'Paraná' },
-    { sigla: 'PE', nome: 'Pernambuco' },
-    { sigla: 'PI', nome: 'Piauí' },
-    { sigla: 'RJ', nome: 'Rio de Janeiro' },
-    { sigla: 'RN', nome: 'Rio Grande do Norte' },
-    { sigla: 'RS', nome: 'Rio Grande do Sul' },
-    { sigla: 'RO', nome: 'Rondônia' },
-    { sigla: 'RR', nome: 'Roraima' },
-    { sigla: 'SC', nome: 'Santa Catarina' },
-    { sigla: 'SP', nome: 'São Paulo' },
-    { sigla: 'SE', nome: 'Sergipe' },
-    { sigla: 'TO', nome: 'Tocantins' },
+    { sigla: "AC", nome: "Acre" },
+    { sigla: "AL", nome: "Alagoas" },
+    { sigla: "AP", nome: "Amapá" },
+    { sigla: "AM", nome: "Amazonas" },
+    { sigla: "BA", nome: "Bahia" },
+    { sigla: "CE", nome: "Ceará" },
+    { sigla: "DF", nome: "Distrito Federal" },
+    { sigla: "ES", nome: "Espírito Santo" },
+    { sigla: "GO", nome: "Goiás" },
+    { sigla: "MA", nome: "Maranhão" },
+    { sigla: "MT", nome: "Mato Grosso" },
+    { sigla: "MS", nome: "Mato Grosso do Sul" },
+    { sigla: "MG", nome: "Minas Gerais" },
+    { sigla: "PA", nome: "Pará" },
+    { sigla: "PB", nome: "Paraíba" },
+    { sigla: "PR", nome: "Paraná" },
+    { sigla: "PE", nome: "Pernambuco" },
+    { sigla: "PI", nome: "Piauí" },
+    { sigla: "RJ", nome: "Rio de Janeiro" },
+    { sigla: "RN", nome: "Rio Grande do Norte" },
+    { sigla: "RS", nome: "Rio Grande do Sul" },
+    { sigla: "RO", nome: "Rondônia" },
+    { sigla: "RR", nome: "Roraima" },
+    { sigla: "SC", nome: "Santa Catarina" },
+    { sigla: "SP", nome: "São Paulo" },
+    { sigla: "SE", nome: "Sergipe" },
+    { sigla: "TO", nome: "Tocantins" },
   ];
 
-  const [uf, setUf] = useState('');
-  const [paran, setParan] = useState('');
-  const [value, setValue] = useState('');
+  const [uf, setUf] = useState("");
+  const [paran, setParan] = useState("");
+  const [value, setValue] = useState("");
   const [dados, setDados] = useState([]);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
   const [totalPaginas, setTotalPaginas] = useState(1);
+  const [porcentagem, setPorcentagem] = useState(null);
 
   const fetchDados = (pagina = 1) => {
-    if (!uf || !paran || value === '') {
-      setError('Preencha todos os campos');
+    if (!uf || !paran || value === "") {
+      setError("Preencha todos os campos");
       return;
     }
 
     setError(null);
     let valorFinal = value;
-    if (parametros[paran] === 'boolean') {
-      valorFinal = value === 'true';
+    if (parametros[paran] === "boolean") {
+      valorFinal = value === "true";
     }
 
-    const url = new URL('http://localhost:8000/relatorios/infraestrutura_das_escolas_por_estado/');
-    url.searchParams.append('uf', uf);
-    url.searchParams.append('paran', paran);
-    url.searchParams.append('value', valorFinal);
-    url.searchParams.append('page', pagina);
+    const url = new URL(
+      "http://localhost:8000/relatorios/infraestrutura_das_escolas_por_estado/"
+    );
+    url.searchParams.append("uf", uf);
+    url.searchParams.append("paran", paran);
+    url.searchParams.append("value", valorFinal);
+    url.searchParams.append("page", pagina);
 
     fetch(url)
       .then((res) => {
-        if (!res.ok) throw new Error('Erro ao buscar dados');
+        if (!res.ok) throw new Error("Erro ao buscar dados");
         return res.json();
       })
       .then((data) => {
         setDados(data.municipios || []);
         setPage(data.pagina_atual || 1);
         setTotalPaginas(data.total_paginas || 1);
+        setPorcentagem(
+          typeof data.porcentagem === "number" ? data.porcentagem : null
+        );
       })
       .catch((err) => {
         console.error(err);
-        setError('Erro ao buscar dados');
+        setError("Erro ao buscar dados");
       });
   };
 
@@ -95,15 +102,19 @@ function RelatorioEstado() {
   };
 
   const renderInput = () => {
-    if (parametros[paran] === 'boolean') {
+    if (parametros[paran] === "boolean") {
       return (
-        <select className="form-control" value={value} onChange={(e) => setValue(e.target.value)}>
+        <select
+          className="form-control"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+        >
           <option value="">Selecione</option>
           <option value="true">Sim</option>
           <option value="false">Não</option>
         </select>
       );
-    } else if (parametros[paran] === 'int') {
+    } else if (parametros[paran] === "int") {
       return (
         <input
           type="number"
@@ -146,13 +157,13 @@ function RelatorioEstado() {
               value={paran}
               onChange={(e) => {
                 setParan(e.target.value);
-                setValue('');
+                setValue("");
               }}
             >
               <option value="">Selecione</option>
               {Object.keys(parametros).map((key) => (
                 <option key={key} value={key}>
-                  {key.replaceAll('_', ' ').replace('in ', 'Possui ')}
+                  {key.replaceAll("_", " ").replace("in ", "Possui ")}
                 </option>
               ))}
             </select>
@@ -175,6 +186,12 @@ function RelatorioEstado() {
 
       {dados.length > 0 && (
         <>
+          {/* Exibe o gráfico de pizza apenas na primeira página e se houver porcentagem */}
+          {page === 1 && porcentagem !== null && (
+            <div className="d-flex justify-content-center mb-4">
+              <GraficoPorcentagem porcentagem={porcentagem} />
+            </div>
+          )}
           <div className="table-responsive">
             <table className="table table-bordered table-striped">
               <thead className="thead-dark">

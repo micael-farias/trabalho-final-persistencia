@@ -13,3 +13,238 @@ fastapi.exceptions.HTTPException: 500: 'TextClause' object has no attribute '_is
 25/07/2025 15:01:29 - INFO - Retornando 0 escolas filtradas por no_municipio=EEEP AVELINO MAGALH�ES (page=1, limit=10)
 25/07/2025 15:01:38 - INFO - EndPoint GET /escolas/filter/{filter}/{data}/{page}/{limit} chamado (filter=no_municipio, data=Tabuleiro do Norte, page=1, limit=10)
 25/07/2025 15:01:38 - INFO - Retornando 10 escolas filtradas por no_municipio=Tabuleiro do Norte (page=1, limit=10)
+30/07/2025 12:18:26 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:19:54 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:20:02 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:20:10 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:20:20 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:21:54 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:22:49 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:22:57 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:23:04 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:23:26 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:23:32 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:23:58 - INFO - Solicitada geração de relatório geral do censo escolar
+30/07/2025 12:23:59 - INFO - Relatório geral gerado com sucesso
+30/07/2025 12:23:59 - INFO - Solicitada geração de relatório geral do censo escolar
+30/07/2025 12:23:59 - INFO - Relatório geral gerado com sucesso
+30/07/2025 12:24:16 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:25:04 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:25:08 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:25:16 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:25:20 - INFO - Solicitada geração de relatório geral do censo escolar
+30/07/2025 12:25:20 - INFO - Relatório geral gerado com sucesso
+30/07/2025 12:25:20 - INFO - Solicitada geração de relatório geral do censo escolar
+30/07/2025 12:25:20 - INFO - Relatório geral gerado com sucesso
+30/07/2025 12:25:28 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:33 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:36 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:42 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:42 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:43 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:43 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:44 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:44 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:44 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:45 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:45 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:45 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:46 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:46 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:46 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:47 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:47 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:48 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:49 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:51 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:51 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:52 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:52 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:53 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:53 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:54 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:54 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:54 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:55 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:55 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:56 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:56 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:56 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:57 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:57 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:25:58 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:09 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:11 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:12 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:12 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:12 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:13 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:13 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:14 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:15 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:21 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:22 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:22 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:23 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:24 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:25 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:30 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:31 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:32 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:32 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:33 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:36 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:37 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:39 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:39 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:39 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:40 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:40 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:40 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:40 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:40 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:40 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:42 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:42 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:42 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:43 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:44 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:46 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:47 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:50 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:50 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:51 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:52 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:52 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:52 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:53 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:53 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:55 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:56 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:56 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:56 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:56 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:56 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:57 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:57 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:57 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:57 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:57 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:57 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:57 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:58 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:59 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:59 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:27:59 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:03 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:08 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:09 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:13 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:14 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:14 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:15 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:15 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:15 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:15 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:16 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:21 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:23 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:23 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:23 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:23 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:24 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:24 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:24 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:24 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:24 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:25 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:25 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:25 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:25 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:26 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:26 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:26 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:26 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:28:27 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:31 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:32 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:33 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:33 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:33 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:34 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:35 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:36 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:36 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:37 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:38 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:39 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:40 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:41 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:42 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:43 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:44 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:48 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:29:58 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:00 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:02 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:03 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:04 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:05 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:07 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:19 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:36 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:38 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:39 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:40 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:41 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:42 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:44 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:30:46 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:31:16 - INFO - Solicitada geração de relatório geral do censo escolar
+30/07/2025 12:31:17 - INFO - Relatório geral gerado com sucesso
+30/07/2025 12:31:17 - INFO - Solicitada geração de relatório geral do censo escolar
+30/07/2025 12:31:17 - INFO - Relatório geral gerado com sucesso
+30/07/2025 12:31:28 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:31:39 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:31:41 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:32:13 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:33:16 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:33:35 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:33:39 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:33:41 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:33:49 - INFO - Solicitada geração de relatório geral do censo escolar
+30/07/2025 12:33:49 - INFO - Relatório geral gerado com sucesso
+30/07/2025 12:33:49 - INFO - Solicitada geração de relatório geral do censo escolar
+30/07/2025 12:33:49 - INFO - Relatório geral gerado com sucesso
+30/07/2025 12:34:01 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:38:28 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:38:53 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:39:02 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:39:11 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:13 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:13 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:13 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:14 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:14 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:15 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:16 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:17 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:18 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:19 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:20 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:21 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:21 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:22 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:25 - INFO - Relatório da infraestrutura das escolas por estado
+30/07/2025 12:39:32 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:40:11 - INFO - Relatório da infraestrutura das escolas
+30/07/2025 12:41:20 - INFO - Solicitada geração de relatório geral do censo escolar
+30/07/2025 12:41:21 - INFO - Relatório geral gerado com sucesso
+30/07/2025 12:41:21 - INFO - Solicitada geração de relatório geral do censo escolar
+30/07/2025 12:41:21 - INFO - Relatório geral gerado com sucesso
+30/07/2025 12:41:53 - INFO - Solicitada geração de relatório geral do censo escolar
+30/07/2025 12:41:53 - INFO - Relatório geral gerado com sucesso
+30/07/2025 12:41:53 - INFO - Solicitada geração de relatório geral do censo escolar
+30/07/2025 12:41:54 - INFO - Relatório geral gerado com sucesso
+30/07/2025 12:42:05 - INFO - Solicitada geração de relatório geral do censo escolar
+30/07/2025 12:42:05 - INFO - Relatório geral gerado com sucesso
