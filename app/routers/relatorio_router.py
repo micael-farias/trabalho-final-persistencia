@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from sqlalchemy import Integer 
 from typing import Dict, Any
 from ..core.database import get_db
 from ..repositories.relatorio_repository import RelatorioRepository

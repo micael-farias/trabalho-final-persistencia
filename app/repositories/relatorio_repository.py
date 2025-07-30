@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from sqlalchemy import text, func
+from sqlalchemy import text, func, Integer
 from typing import Dict, Any, List
 from ..models.escola import Escola
 from ..models.infraestrutura import Infraestrutura
@@ -249,12 +249,12 @@ class RelatorioRepository:
             total_escolas = self.db.query(Infraestrutura).count()
             
             infra_stats = self.db.query(
-                func.sum(func.cast(Infraestrutura.in_internet, text('INTEGER'))).label('com_internet'),
-                func.sum(func.cast(Infraestrutura.in_biblioteca, text('INTEGER'))).label('com_biblioteca'),
-                func.sum(func.cast(Infraestrutura.in_laboratorio_informatica, text('INTEGER'))).label('com_lab_info'),
-                func.sum(func.cast(Infraestrutura.in_laboratorio_ciencias, text('INTEGER'))).label('com_lab_ciencias'),
-                func.sum(func.cast(Infraestrutura.in_quadra_esportes, text('INTEGER'))).label('com_quadra'),
-                func.sum(func.cast(Infraestrutura.in_acessibilidade_rampas, text('INTEGER'))).label('com_rampas'),
+                func.sum(func.cast(Infraestrutura.in_internet, Integer)).label('com_internet'),
+                func.sum(func.cast(Infraestrutura.in_biblioteca, Integer)).label('com_biblioteca'),
+                func.sum(func.cast(Infraestrutura.in_laboratorio_informatica, Integer)).label('com_lab_info'),
+                func.sum(func.cast(Infraestrutura.in_laboratorio_ciencias, Integer)).label('com_lab_ciencias'),
+                func.sum(func.cast(Infraestrutura.in_quadra_esportes, Integer)).label('com_quadra'),
+                func.sum(func.cast(Infraestrutura.in_acessibilidade_rampas, Integer)).label('com_rampas'),
                 func.sum(Infraestrutura.qt_desktop_aluno).label('total_computadores'),
                 func.sum(Infraestrutura.qt_salas_utilizadas).label('total_salas')
             ).first()
@@ -262,8 +262,8 @@ class RelatorioRepository:
             infra_por_uf = self.db.query(
                 Escola.sg_uf,
                 func.count(Infraestrutura.id).label('total_escolas'),
-                func.sum(func.cast(Infraestrutura.in_internet, text('INTEGER'))).label('com_internet'),
-                func.sum(func.cast(Infraestrutura.in_biblioteca, text('INTEGER'))).label('com_biblioteca'),
+                func.sum(func.cast(Infraestrutura.in_internet, Integer)).label('com_internet'),
+                func.sum(func.cast(Infraestrutura.in_biblioteca, Integer)).label('com_biblioteca'),
                 func.sum(Infraestrutura.qt_desktop_aluno).label('total_computadores')
             ).join(Escola, Infraestrutura.co_entidade == Escola.co_entidade)\
             .group_by(Escola.sg_uf)\
